@@ -1,16 +1,14 @@
 import React from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 
-
-export default function Homepage() {
+export default function Homepage(){
     return (
         <View style={styles.container}>
-          <Text>This will be the Home Page</Text>
+            <Text>This will be the Home Page</Text>
         </View>
     );
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -19,4 +17,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     }
-})
+});
