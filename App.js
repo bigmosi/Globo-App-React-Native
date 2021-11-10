@@ -10,6 +10,8 @@ import { AppLoading } from 'expo';
 import Header from './Header';
 import Footer from './Footer';
 import { navigationRef } from './RootNavigation';
+import NewsDetail from './NewsDetail';
+import AboutGlobo from './About';
 
 const Stack = createStackNavigator();
 
@@ -17,27 +19,45 @@ export default function App() {
   let [fontsLoaded] = useFonts({
     'OpenSans': require('./assets/fonts/OpenSans-Regular.ttf'),
   });
-  if(!fontsLoaded) {
+
+  if (!fontsLoaded) {
     return <AppLoading />;
   } else {
     return (
       <NavigationContainer
-        style={{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight: 0}} 
+        style={{ paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0}}
         ref={navigationRef}
       >
-        <Stack.Navigator initialRouteName="Globomantics"
-          headerMode="screen"
+        <Stack.Navigator 
+        initialRouteName="Catalog"
+        headerMode="screen"
         >
-          <Stack.Screen 
-             name="Globomantics"
-             component={Homepage}
-             options={{
-               header: () => <Header headerDisplay="Globomantics" />
-             }}
+        
+          <Stack.Screen
+            name="Globomantics"
+            component={Homepage}
+            options={{
+              header: () => <Header headerDisplay="Globomantics" />
+            }}
           />
+          <Stack.Screen
+            name="NewsDetail"
+            component={NewsDetail}
+            options={{
+              header: () => <Header headerDisplay="News" />
+            }}
+          />
+          <Stack.Screen 
+            name="About" 
+            component={AboutGlobo}
+            options={{
+              header: () => <Header headerDisplay="About Globomantics" />
+            }}
+            />
         </Stack.Navigator>
+        <Footer />
       </NavigationContainer>
-   );
+    );
   }
 }
 
