@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, TextInput, ScrollView, TouchableOpacity } from "react-native";
 
 
-export default function Quotepage(){
+export default function Quotepage({route}){
     const [name, nameChange] = useState('');
     const [email, emailChange] = useState('');
     const [phone, phoneChange] = useState('');
     const [message, messageChange] = useState('');
     const [submitError, setError] = useState(false);
     const [submitted, trySubmit] = useState(false);
+    const { model } = route.params;
+    const { modelnumber} = route.params;
+
+    useEffect(() => {
+        if(model !== 'Footer') {
+            const newQoute = `${model} model# : ${modelnumber}`;
+            messageChange(newQoute);
+        } else {
+            messageChange('');
+        }
+    }, []);
 
     if(!name|!email|!message){
         setError(true);
